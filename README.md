@@ -17,17 +17,12 @@ This repository implements the solution for the problem in space.pdf
    ```sh
    git clone https://github.com/ivantm24/whos_in_space.git
    ```
-2. Create virtual environment
-   ```sh
-   cd whos_in_space
-   python3 -m venv venv
-   ```
-3. Run test
+2. Run test
     ```sh
     cd whos_in_space
     python3 -m unitttest
     ```
-4. Run main
+3. Run main
     ```sh
     cd whos_in_space
     python3 main.py
