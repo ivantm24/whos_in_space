@@ -1,4 +1,4 @@
-from printer import CliPrinter
+from printer import CliPrinter, SORT
 from service import SpaceService
 
 if __name__ == '__main__':
@@ -10,4 +10,4 @@ if __name__ == '__main__':
 
     res = ss.get_crews()
 
-    print(CliPrinter(res, max_width).get_table())
+    print(CliPrinter(res, max_width).get_table(SORT.BY_LAST_NAME))

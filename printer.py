@@ -1,3 +1,5 @@
+from enum import Enum
+
 from schema import CrewResponse
 
 
@@ -14,6 +16,11 @@ def add_column_with_padding(start_index, column_width, value, res_arr):
     return start_index
 
 
+class SORT(Enum):
+    BY_CRAFT = 0
+    BY_LAST_NAME = 1
+
+
 class CliPrinter:
     NAME_HEADER = 'Name'
     CRAFT_HEADER = 'Craft'
@@ -25,8 +32,11 @@ class CliPrinter:
         self.crew_response = crew_response
         self.max_header_width = max_header_width
 
-    def get_table(self) -> str:
-        people_list = self.crew_response.get_people_by_craft()
+    def get_table(self, sort=SORT.BY_CRAFT) -> str:
+        if sort == SORT.BY_LAST_NAME:
+            people_list = self.crew_response.get_people_by_last_name()
+        else:
+            people_list = self.crew_response.get_people_by_craft()
         max_name = len(CliPrinter.NAME_HEADER)
         max_craft = len(CliPrinter.CRAFT_HEADER)
         for p in people_list:

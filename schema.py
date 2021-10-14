@@ -3,8 +3,14 @@ from typing import List
 
 class Person:
     def __init__(self, name: str, craft: str):
-        self.name = name
+        self.name: str = name
         self.craft = craft
+
+    def get_last_name(self):
+        parts = self.name.split()
+        if len(parts) > 3:
+            return " ".join(parts[-2:])
+        return parts[-1]
 
 
 def _raise_if_tag_not_in_response(tag, json_response):
@@ -43,6 +49,10 @@ class CrewResponse:
 
     def get_people_by_craft(self) -> List[Person]:
         people_list = sorted(self.people_list, key=lambda p: p.craft)
+        return people_list
+
+    def get_people_by_last_name(self, ascending=True) -> List[Person]:
+        people_list = sorted(self.people_list, key=lambda p: p.get_last_name(), reverse=not ascending)
         return people_list
 
 
